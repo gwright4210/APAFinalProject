@@ -1,9 +1,13 @@
-import java.util.Scanner;
-
+//import java.util.Scanner;
 public class Main{
+    public static void main(String[] args) {
 
+        Game game = new Game();
+        game.playGame();
+    }
 }
 
+/* 
 class Grid{
     //initialize array
     private char[][] grid = new char[6][7];
@@ -52,3 +56,4 @@ class GridController{
        model.setCell(row, col, value);
     }
 }
+*/
