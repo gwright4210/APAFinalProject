@@ -2,7 +2,7 @@
  
     public class Grid {
         //initialize array
-        static char[][] grid = new char[6][7];
+        char[][] grid = new char[6][7];
 
         public Grid() {
             //initialize array
@@ -17,7 +17,7 @@
             grid[row][col] = value;
         }
 
-        public static char[][] getGrid() {return grid;}
+        public char[][] getGrid() {return grid;}
     }
     
     class GridView{
@@ -48,7 +48,7 @@
         }
     
         public void updatedView() {
-            view.display(Grid.getGrid());
+            view.display(model.getGrid());
         }
     
          public void setCell(int row, int col, char value){
