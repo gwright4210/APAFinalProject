@@ -11,15 +11,17 @@ public class Game {
     GridView view = new GridView();
     GridController control = new GridController(model, view);
     
-    
+    // bugs I need to fix
+	// input error 
     public int validInput() {
         int play = -1;
         System.out.print("Player " + player + ", choose a column: ");
-        in.nextLine();
+
         try {
             play = in.nextInt();
-        } catch(InputMismatchException ex) {
+        }catch(InputMismatchException ex) {
             System.out.println("Enter a valid input.");
+			in.nextLine();
             validInput();
         }
         return play;
@@ -30,16 +32,13 @@ public class Game {
             boolean validPlay;
             int play;
 			do {
+				//show grid
 				control.updatedView();
-				
-				
+
+				//validate input
                 play = validInput();
                 
-                
-               
-				
 				//validate play
-                
 				validPlay = validate(play, model.getGrid());
                 
 			}while (validPlay == false);
@@ -80,7 +79,7 @@ public class Game {
 	
 	public static boolean validate(int column, char[][] grid){
 		//valid column?
-		if (column < 0 || column > grid[0].length){
+		if (column < 0 || column > 6){
 			return false;
 		}
 		
@@ -88,8 +87,6 @@ public class Game {
 		if (grid[0][column] != ' '){
 			return false;
 		}
-        
-		
 		return true;
 	}
 	
