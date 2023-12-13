@@ -2,8 +2,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
+	String RESET = "\u001B[0m";
     int turn = 1;
-    char player = 'R';
+	String player = "R";
     boolean winner = false;
     Scanner in = new Scanner(System.in);
 
@@ -45,8 +46,8 @@ public class Game {
 			
 			//drop the checker
 			for (int row = model.getGrid().length-1; row >= 0; row--){
-				if(model.getGrid()[row][play] == ' '){
-					model.getGrid()[row][play] = player;
+				if(model.getGrid()[row][play] == " "){
+					model.getGrid()[row][play] =  player;
 					break;
 				}
 			}
@@ -55,10 +56,10 @@ public class Game {
 			winner = isWinner(player, model.getGrid());
 			
 			//switch players
-			if (player == 'R'){
-				player = 'B';
+			if (player == "R"){
+				player = "B";
 			}else{
-				player = 'R';
+				player = "R";
 			}
 			
 			turn++;			
@@ -66,8 +67,8 @@ public class Game {
 		control.updatedView();
 		
 		if (winner){
-			if (player=='R'){
-				System.out.println("Black won");
+			if (player=="R"){
+				System.out.println("Blue won");
 			}else{
 				System.out.println("Red won");
 			}
@@ -77,27 +78,27 @@ public class Game {
 		
 	}
 	
-	public static boolean validate(int column, char[][] grid){
+	public static boolean validate(int column, String[][] grid){
 		//valid column?
 		if (column < 0 || column > 6){
 			return false;
 		}
 		
 		//full column?
-		if (grid[0][column] != ' '){
+		if (grid[0][column] != " "){
 			return false;
 		}
 		return true;
 	}
 	
-	public static boolean isWinner(char player, char[][] grid){
+	public boolean isWinner(String player, String[][] grid){
 		//check for 4 across
 		for(int row = 0; row<grid.length; row++){
 			for (int col = 0;col < grid[0].length - 3;col++){
-				if (grid[row][col] == player   && 
-					grid[row][col+1] == player &&
-					grid[row][col+2] == player &&
-					grid[row][col+3] == player){
+				if (model.getGrid()[row][col] == player && 
+					model.getGrid()[row][col+1] == player &&
+					model.getGrid()[row][col+2] == player &&
+					model.getGrid()[row][col+3] == player){
 					return true;
 				}
 			}			
@@ -105,10 +106,10 @@ public class Game {
 		//check for 4 up and down
 		for(int row = 0; row < grid.length - 3; row++){
 			for(int col = 0; col < grid[0].length; col++){
-				if (grid[row][col] == player   && 
-					grid[row+1][col] == player &&
-					grid[row+2][col] == player &&
-					grid[row+3][col] == player){
+				if (model.getGrid()[row][col] == player   && 
+					model.getGrid()[row+1][col] == player &&
+					model.getGrid()[row+2][col] == player &&
+					model.getGrid()[row+3][col] == player){
 					return true;
 				}
 			}
@@ -116,10 +117,10 @@ public class Game {
 		//check upward diagonal
 		for(int row = 3; row < grid.length; row++){
 			for(int col = 0; col < grid[0].length - 3; col++){
-				if (grid[row][col] == player   && 
-					grid[row-1][col+1] == player &&
-					grid[row-2][col+2] == player &&
-					grid[row-3][col+3] == player){
+				if (model.getGrid()[row][col] == player   && 
+					model.getGrid()[row-1][col+1] == player &&
+					model.getGrid()[row-2][col+2] == player &&
+					model.getGrid()[row-3][col+3] == player){
 					return true;
 				}
 			}
@@ -127,10 +128,10 @@ public class Game {
 		//check downward diagonal
 		for(int row = 0; row < grid.length - 3; row++){
 			for(int col = 0; col < grid[0].length - 3; col++){
-				if (grid[row][col] == player   && 
-					grid[row+1][col+1] == player &&
-					grid[row+2][col+2] == player &&
-					grid[row+3][col+3] == player){
+				if (model.getGrid()[row][col] == player   && 
+					model.getGrid()[row+1][col+1] == player &&
+					model.getGrid()[row+2][col+2] == player &&
+					model.getGrid()[row+3][col+3] == player){
 					return true;
 				}
 			}
